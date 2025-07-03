@@ -14,136 +14,200 @@
             min-height: 100vh;
         }
         
-        .container {
+        .header {
             max-width: 1200px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            padding: 30px;
+            padding: 20px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .header.hidden {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         h1 {
             text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-size: 2.2em;
+            margin-bottom: 8px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         
         .subtitle {
             text-align: center;
-            font-size: 1.2em;
+            font-size: 1em;
             opacity: 0.9;
-            margin-bottom: 30px;
+            margin-bottom: 0;
         }
         
         .main-content {
             display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 30px;
-            margin-bottom: 30px;
+            grid-template-columns: 1fr 280px;
+            gap: 20px;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         
         .swing-area {
             background: linear-gradient(180deg, #87CEEB 0%, #90EE90 70%, #228B22 100%);
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 15px;
             position: relative;
-            min-height: 600px;
+            min-height: 500px;
             overflow: hidden;
+        }
+        
+        .hole-layout-controls {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 8px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .hole-layout-controls h4 {
+            margin: 0 0 6px 0;
+            font-size: 0.8em;
+            color: #333;
+            text-align: center;
+        }
+        
+        .hole-layout-btn.selected {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            box-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
         }
         
         .controls {
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .sliders-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
         }
         
         .control-group {
-            margin-bottom: 25px;
+            margin-bottom: 0;
         }
         
         .control-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 0.85em;
         }
         
         .slider {
             width: 100%;
-            height: 8px;
-            border-radius: 4px;
+            height: 6px;
+            border-radius: 3px;
             background: rgba(255, 255, 255, 0.3);
             outline: none;
             appearance: none;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
         }
         
         .slider::-webkit-slider-thumb {
             appearance: none;
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             background: #fff;
             cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         
         .slider::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             background: #fff;
             cursor: pointer;
             border: none;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         
         .value-display {
-            font-size: 1.1em;
+            font-size: 0.85em;
             font-weight: bold;
             color: #fff;
             text-align: center;
             background: rgba(0,0,0,0.3);
-            padding: 5px 10px;
-            border-radius: 20px;
+            padding: 3px 8px;
+            border-radius: 12px;
         }
         
         .result-display {
             background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            padding: 15px;
+            border-radius: 8px;
+            padding: 10px;
             text-align: center;
-            margin-top: 20px;
         }
         
         .shot-result {
-            font-size: 1.8em;
+            font-size: 1.4em;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
         
         .shot-description {
-            font-size: 1em;
+            font-size: 0.8em;
             opacity: 0.9;
-            line-height: 1.4;
+            line-height: 1.3;
         }
         
         .legend {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
         }
         
         .legend-item {
             background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
+            padding: 12px;
+            border-radius: 8px;
             text-align: center;
+        }
+        
+        .legend-item h3 {
+            margin: 0 0 8px 0;
+            font-size: 1em;
+        }
+        
+        .legend-item p {
+            margin: 8px 0 0 0;
+            font-size: 0.85em;
+            line-height: 1.3;
         }
         
         .legend-color {
@@ -255,25 +319,99 @@
         
         .preset-buttons {
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
+            border-radius: 8px;
+            padding: 8px;
             display: grid;
             grid-template-columns: 1fr;
-            gap: 10px;
+            gap: 6px;
         }
         
         .preset-btn {
             background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
             color: white;
             border: none;
-            padding: 12px 15px;
-            border-radius: 8px;
-            font-size: 14px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            font-size: 11px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .hole-layout-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border: none;
+            padding: 6px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            margin: 0 2px;
+        }
+        
+        .hole-layout-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+        
+        .shot-types-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 8px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            min-width: 120px;
+        }
+        
+        .shot-types-controls h4 {
+            margin: 0 0 6px 0;
+            font-size: 0.8em;
+            color: #333;
+            text-align: center;
+        }
+        
+        .shot-types-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px;
+        }
+        
+        .shot-type-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border: none;
+            padding: 4px 6px;
+            border-radius: 4px;
+            font-size: 9px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        .shot-type-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+        
+        .shot-type-btn.selected {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            box-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+        }
+        
+        .reset-btn {
+            background: linear-gradient(135deg, #666 0%, #444 100%) !important;
+            grid-column: 1 / -1;
+            margin-top: 4px;
         }
         
         .preset-btn:hover {
@@ -292,9 +430,20 @@
         
         .dogleg-controls {
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
+            border-radius: 8px;
+            padding: 8px;
+        }
+        
+        .dogleg-controls h4 {
+            margin: 0 0 6px 0;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        
+        .shot-type-header {
+            margin: 0 0 6px 0;
+            text-align: center;
+            font-size: 0.9em;
         }
         
         .shadow {
@@ -304,25 +453,64 @@
         @media (max-width: 768px) {
             .main-content {
                 grid-template-columns: 1fr;
+                position: relative;
             }
             
-            .container {
-                padding: 20px;
+            .header {
+                padding: 15px;
             }
             
             h1 {
-                font-size: 2em;
+                font-size: 1.8em;
+            }
+            
+            .subtitle {
+                font-size: 0.9em;
+            }
+            
+            .controls {
+                order: 2;
+            }
+            
+            .swing-area {
+                order: 1;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="header" id="header">
         <h1>🏌️ ATURBO Swing Path Simulator</h1>
         <p class="subtitle">Interactive golf swing mechanics tool - Visualize how club face angle and swing path create different ball flights</p>
+    </div>
+    
+    <div class="container">
         
         <div class="main-content">
             <div class="swing-area">
+                <div class="hole-layout-controls">
+                    <h4>Hole Layout</h4>
+                    <div>
+                        <button class="hole-layout-btn selected" id="straightHoleBtn">Straight</button>
+                        <button class="hole-layout-btn" id="doglegLeftBtn">Left</button>
+                        <button class="hole-layout-btn" id="doglegRightBtn">Right</button>
+                    </div>
+                </div>
+                
+                <div class="shot-types-controls">
+                    <h4>Shot Types</h4>
+                    <div class="shot-types-grid">
+                        <button class="shot-type-btn selected" id="straightBtn">Straight</button>
+                        <button class="shot-type-btn" id="drawBtn">Draw</button>
+                        <button class="shot-type-btn" id="powerDrawBtn">Power Draw</button>
+                        <button class="shot-type-btn" id="fadeBtn">Fade</button>
+                        <button class="shot-type-btn" id="controlFadeBtn">Control Fade</button>
+                        <button class="shot-type-btn" id="hookBtn">Hook</button>
+                        <button class="shot-type-btn" id="sliceBtn">Slice</button>
+                        <button class="shot-type-btn reset-btn" id="resetBtn">Reset</button>
+                    </div>
+                </div>
+                
                 <svg viewBox="0 0 700 600" id="swingDiagram">
                     <!-- Define arrow marker -->
                     <defs>
@@ -507,37 +695,18 @@
             </div>
             
             <div class="controls">
-                <div class="control-group">
-                    <label for="clubFaceAngle">Club Face Angle</label>
-                    <input type="range" id="clubFaceAngle" class="slider" min="-45" max="45" value="0" step="1">
-                    <div class="value-display" id="clubFaceValue">0° Square</div>
-                </div>
-                
-                <div class="control-group">
-                    <label for="swingPathAngle">Swing Path</label>
-                    <input type="range" id="swingPathAngle" class="slider" min="-45" max="45" value="0" step="1">
-                    <div class="value-display" id="swingPathValue">0° Square</div>
-                </div>
-                
-                <div class="dogleg-controls">
-                    <h4 style="margin-bottom: 10px; text-align: center;">Hole Layout</h4>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
-                        <button class="preset-btn selected" id="straightHoleBtn">Straight</button>
-                        <button class="preset-btn" id="doglegLeftBtn">Dogleg Left</button>
-                        <button class="preset-btn" id="doglegRightBtn">Dogleg Right</button>
+                <div class="sliders-row">
+                    <div class="control-group">
+                        <label for="clubFaceAngle">Club Face</label>
+                        <input type="range" id="clubFaceAngle" class="slider" min="-45" max="45" value="0" step="1">
+                        <div class="value-display" id="clubFaceValue">0° Square</div>
                     </div>
-                </div>
-                
-                <div class="preset-buttons">
-                    <h3 style="margin-bottom: 10px; margin-top: 0; text-align: center; font-size: 1em;">Shot Types</h3>
-                    <button class="preset-btn selected" id="straightBtn">Straight Shot</button>
-                    <button class="preset-btn" id="drawBtn">Draw</button>
-                    <button class="preset-btn" id="powerDrawBtn">Power Draw</button>
-                    <button class="preset-btn" id="fadeBtn">Fade</button>
-                    <button class="preset-btn" id="controlFadeBtn">Control Fade</button>
-                    <button class="preset-btn" id="hookBtn">Hook</button>
-                    <button class="preset-btn" id="sliceBtn">Slice</button>
-                    <button class="preset-btn" id="resetBtn" style="background: linear-gradient(135deg, #666 0%, #444 100%); margin-top: 10px;">Reset All</button>
+                    
+                    <div class="control-group">
+                        <label for="swingPathAngle">Swing Path</label>
+                        <input type="range" id="swingPathAngle" class="slider" min="-45" max="45" value="0" step="1">
+                        <div class="value-display" id="swingPathValue">0° Square</div>
+                    </div>
                 </div>
                 
                 <div class="result-display">
@@ -571,6 +740,22 @@
     </div>
 
     <script>
+        // Add scroll behavior for header
+        let lastScrollTop = 0;
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100) {
+                header.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+        
         // Get DOM elements
         const clubFaceSlider = document.getElementById('clubFaceAngle');
         const swingPathSlider = document.getElementById('swingPathAngle');
@@ -595,12 +780,6 @@
         // Helper functions
         function clearAllSelections() {
             document.querySelectorAll('.preset-buttons .preset-btn').forEach(btn => {
-                btn.classList.remove('selected');
-            });
-        }
-
-        function clearDoglegSelections() {
-            document.querySelectorAll('.dogleg-controls .preset-btn').forEach(btn => {
                 btn.classList.remove('selected');
             });
         }
@@ -875,21 +1054,21 @@
         clubFaceSlider.addEventListener('input', updateVisualization);
         swingPathSlider.addEventListener('input', updateVisualization);
         
-        // Dogleg buttons
+        // Hole layout buttons (now in top-left overlay)
         document.getElementById('straightHoleBtn').addEventListener('click', function() {
-            clearDoglegSelections();
+            document.querySelectorAll('.hole-layout-btn').forEach(btn => btn.classList.remove('selected'));
             this.classList.add('selected');
             setDogleg('straight');
         });
         
         document.getElementById('doglegLeftBtn').addEventListener('click', function() {
-            clearDoglegSelections();
+            document.querySelectorAll('.hole-layout-btn').forEach(btn => btn.classList.remove('selected'));
             this.classList.add('selected');
             setDogleg('left');
         });
         
         document.getElementById('doglegRightBtn').addEventListener('click', function() {
-            clearDoglegSelections();
+            document.querySelectorAll('.hole-layout-btn').forEach(btn => btn.classList.remove('selected'));
             this.classList.add('selected');
             setDogleg('right');
         });
@@ -957,7 +1136,7 @@
             swingPathSlider.value = 0;
             
             // Reset hole layout to straight
-            clearDoglegSelections();
+            document.querySelectorAll('.hole-layout-btn').forEach(btn => btn.classList.remove('selected'));
             document.getElementById('straightHoleBtn').classList.add('selected');
             setDogleg('straight');
             
