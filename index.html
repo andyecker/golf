@@ -581,6 +581,17 @@
         const swingPathElement = document.getElementById('swingPath');
         const ballFlightElement = document.getElementById('ballFlight');
 
+        // Define shot type configurations
+        const shotTypes = {
+            straight: { face: 0, path: 0 },
+            draw: { face: 5, path: 10 },
+            powerDraw: { face: 10, path: 20 },
+            fade: { face: -5, path: -10 },
+            controlFade: { face: -10, path: -20 },
+            hook: { face: 10, path: 25 },
+            slice: { face: -10, path: -25 }
+        };
+
         // Helper functions
         function clearAllSelections() {
             document.querySelectorAll('.preset-buttons .preset-btn').forEach(btn => {
@@ -592,6 +603,30 @@
             document.querySelectorAll('.dogleg-controls .preset-btn').forEach(btn => {
                 btn.classList.remove('selected');
             });
+        }
+
+        function checkShotTypeMatch() {
+            const currentFace = parseInt(clubFaceSlider.value);
+            const currentPath = parseInt(swingPathSlider.value);
+            
+            // Check if current values match any shot type
+            for (const [shotType, values] of Object.entries(shotTypes)) {
+                if (values.face === currentFace && values.path === currentPath) {
+                    // Found a match, select the corresponding button
+                    clearAllSelections();
+                    const buttonId = shotType === 'powerDraw' ? 'powerDrawBtn' : 
+                                   shotType === 'controlFade' ? 'controlFadeBtn' : 
+                                   shotType + 'Btn';
+                    const button = document.getElementById(buttonId);
+                    if (button) {
+                        button.classList.add('selected');
+                    }
+                    return;
+                }
+            }
+            
+            // No match found, clear all selections
+            clearAllSelections();
         }
         
         function updateVisualization() {
@@ -614,6 +649,9 @@
             updateClubFace(clubFaceAngle);
             updateSwingPath(swingPathAngle);
             updateBallFlight(clubFaceAngle, swingPathAngle);
+
+            // Check if current settings match a shot type
+            checkShotTypeMatch();
         }
         
         function calculateBallFlight(face, path) {
@@ -858,56 +896,56 @@
         
         // Shot type buttons
         document.getElementById('straightBtn').addEventListener('click', function() {
-            clubFaceSlider.value = 0;
-            swingPathSlider.value = 0;
+            clubFaceSlider.value = shotTypes.straight.face;
+            swingPathSlider.value = shotTypes.straight.path;
             clearAllSelections();
             this.classList.add('selected');
             updateVisualization();
         });
         
         document.getElementById('drawBtn').addEventListener('click', function() {
-            clubFaceSlider.value = 5;
-            swingPathSlider.value = 10;
+            clubFaceSlider.value = shotTypes.draw.face;
+            swingPathSlider.value = shotTypes.draw.path;
             clearAllSelections();
             this.classList.add('selected');
             updateVisualization();
         });
         
         document.getElementById('powerDrawBtn').addEventListener('click', function() {
-            clubFaceSlider.value = 10;
-            swingPathSlider.value = 20;
+            clubFaceSlider.value = shotTypes.powerDraw.face;
+            swingPathSlider.value = shotTypes.powerDraw.path;
             clearAllSelections();
             this.classList.add('selected');
             updateVisualization();
         });
         
         document.getElementById('fadeBtn').addEventListener('click', function() {
-            clubFaceSlider.value = -5;
-            swingPathSlider.value = -10;
+            clubFaceSlider.value = shotTypes.fade.face;
+            swingPathSlider.value = shotTypes.fade.path;
             clearAllSelections();
             this.classList.add('selected');
             updateVisualization();
         });
         
         document.getElementById('controlFadeBtn').addEventListener('click', function() {
-            clubFaceSlider.value = -10;
-            swingPathSlider.value = -20;
+            clubFaceSlider.value = shotTypes.controlFade.face;
+            swingPathSlider.value = shotTypes.controlFade.path;
             clearAllSelections();
             this.classList.add('selected');
             updateVisualization();
         });
         
         document.getElementById('hookBtn').addEventListener('click', function() {
-            clubFaceSlider.value = 10;
-            swingPathSlider.value = 25;
+            clubFaceSlider.value = shotTypes.hook.face;
+            swingPathSlider.value = shotTypes.hook.path;
             clearAllSelections();
             this.classList.add('selected');
             updateVisualization();
         });
         
         document.getElementById('sliceBtn').addEventListener('click', function() {
-            clubFaceSlider.value = -10;
-            swingPathSlider.value = -25;
+            clubFaceSlider.value = shotTypes.slice.face;
+            swingPathSlider.value = shotTypes.slice.path;
             clearAllSelections();
             this.classList.add('selected');
             updateVisualization();
